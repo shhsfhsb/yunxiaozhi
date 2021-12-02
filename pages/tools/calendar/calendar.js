@@ -20,6 +20,11 @@ Page({
       "#FF1493",
       "#00FFFF",
       "#800000",
+      "#00A19D",
+      "#FFB344",
+      "#E05D5D",
+      "#6F69AC",
+      "#38A3A5",
     ],
     hangshu:5,
     jilu:[],
@@ -80,7 +85,9 @@ Page({
         let termNum = semester.map(s => s.semester)
         getGradeList(termNum).then((grades) => {
           for(let i in semester){
-            semester[i].title += `(${grades[semester[i].semester]})`
+            if (grades[semester[i].semester] != '未知') {
+              semester[i].title += `(${grades[semester[i].semester]})`
+            }
           }
           that.setData({
             semester

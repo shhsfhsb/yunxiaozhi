@@ -7,13 +7,12 @@ Page({
    */
   data: {
     gridCol: 5,
-    study: [
-      {
+    study: [{
         color: 'blue',
         badge: 0,
         name: '成绩查询',
         icon: 'score',
-        needLogin:true,
+        needLogin: true,
         url: '../tools/score/score?from=index',
       }, {
         color: 'green',
@@ -64,7 +63,7 @@ Page({
         icon: 'assess',
         needLogin: true,
         url: '../tools/assess/assess?from=index',
-      }, 
+      },
       {
         color: 'red',
         badge: '',
@@ -74,8 +73,7 @@ Page({
         url: '/pages/tools/course/category/category?from=index',
       },
     ],
-    life:[
-      {
+    life: [{
         color: 'olive',
         badge: 0,
         name: '新生必看',
@@ -128,16 +126,16 @@ Page({
         icon: 'yct',
         needLogin: true,
         url: '../tools/yct/yct?from=index',
-      }, 
+      },
       {
         icon: 'bad',
         color: 'red',
         badge: '',
         name: '水电查询',
         icon: 'quantity',
-        needLogin: true,
+        needLogin: false,
         url: '/pages/tools/quantity/quantity',
-      }, 
+      },
       {
         icon: 'bad',
         color: 'red',
@@ -146,7 +144,7 @@ Page({
         icon: 'clockin',
         needLogin: true,
         url: '/pages/tools/clockin/clockin',
-      }, 
+      },
       {
         icon: 'time',
         color: 'pink',
@@ -164,27 +162,27 @@ Page({
         icon: 'summary',
         needLogin: true,
         url: '/pages/tools/summary/summary',
-      }, 
-      {
-        color: 'red',
-        badge: '',
-        name: '523现状',
-        icon: '523',
-        needLogin: false,
-        appid: "wxb036cafe2994d7d0",
-        path: "/portal/topic-profile/topic-profile?group_id=13104375827371700&invite_ticket=BgAARwqnU-49GW8g92KH3E7WFA&topic_id=14&fromScene=bizArticle",
-        url: '/pages/tools/summary/summary',
       },
-      {
-        color: 'red',
-        badge: '',
-        name: '闲置转让',
-        icon: 'xianzhi',
-        needLogin: false,
-        appid: "wxb036cafe2994d7d0",
-        path: "/portal/topic-profile/topic-profile?group_id=13104375827371700&invite_ticket=BgAARwqnU-49GW8g92KH3E7WFA&topic_id=3&fromScene=bizArticle",
-        url: '/pages/tools/summary/summary',
-      },
+      // {
+      //   color: 'red',
+      //   badge: '',
+      //   name: '523现状',
+      //   icon: '523',
+      //   needLogin: false,
+      //   appid: "wxb036cafe2994d7d0",
+      //   path: "/portal/topic-profile/topic-profile?group_id=13104375827371700&invite_ticket=BgAARwqnU-49GW8g92KH3E7WFA&topic_id=14&fromScene=bizArticle",
+      //   url: '/pages/tools/summary/summary',
+      // },
+      // {
+      //   color: 'red',
+      //   badge: '',
+      //   name: '闲置转让',
+      //   icon: 'xianzhi',
+      //   needLogin: false,
+      //   appid: "wxb036cafe2994d7d0",
+      //   path: "/portal/topic-profile/topic-profile?group_id=13104375827371700&invite_ticket=BgAARwqnU-49GW8g92KH3E7WFA&topic_id=3&fromScene=bizArticle",
+      //   url: '/pages/tools/summary/summary',
+      // },
       {
         icon: 'bad',
         color: 'red',
@@ -193,7 +191,7 @@ Page({
         icon: 'lost',
         needLogin: false,
         url: '/pages/tools/lost/lost',
-      },  
+      },
       {
         icon: 'bad',
         color: 'red',
@@ -205,15 +203,50 @@ Page({
       },
       {
         color: 'red',
-        badge: '新',
+        badge: '',
         name: '运动排行',
         icon: 'run',
         needLogin: true,
         url: '/pages/tools/sport/sport',
       },
-    ],
-    query:[
       {
+        icon: 'bad',
+        color: 'red',
+        badge: '',
+        name: '找社团',
+        icon: 'club',
+        needLogin: false,
+        url: '/pages/tools/club/club',
+      },
+      // {
+      //   icon: 'bad',
+      //   color: 'red',
+      //   badge: '',
+      //   name: '找同乡',
+      //   icon: 'tongxiang',
+      //   needLogin: false,
+      //   url: '/pages/tools/city/city'
+      // },
+      {
+        icon: 'bad',
+        color: 'red',
+        badge: '',
+        name: '找群聊',
+        icon: 'qunliao',
+        needLogin: false,
+        url: '../article/article?src=' + encodeURIComponent('http://mp.weixin.qq.com/s?__biz=MzI1NTUwNDIzNQ==&mid=2247488770&idx=1&sn=f7d7747e97ab377bd5f915c506d7a7e7&chksm=ea35af06dd42261028b0b3554e22111d7f8c312e0d7ed34f1679a2b15c2cb287f62287503cb6#rd' + "&title=云小智邀请你加入群聊"),
+      },
+      {
+        icon: 'bad',
+        color: 'red',
+        badge: '新',
+        name: '图书馆',
+        icon: 'library',
+        needLogin: false,
+        url: '/pages/tools/library/index',
+      },
+    ],
+    query: [{
         icon: 'home',
         color: 'theme',
         badge: 0,
@@ -240,16 +273,7 @@ Page({
         icon: 'club',
         needLogin: false,
         url: '/pages/tools/club/club',
-      },  
-      {
-        icon: 'bad',
-        color: 'red',
-        badge: '',
-        name: '找群聊',
-        icon: 'qunliao',
-        needLogin: false,
-        url: '../article/article?src=' + encodeURIComponent('http://mp.weixin.qq.com/s?__biz=MzI1NTUwNDIzNQ==&mid=100002002&idx=1&sn=79069994b1793c33e8ce49431c1d0bd6&chksm=6a35b2d65d423bc097f66072ce82aa4aecc9a1b12da127418eb273f43ce16b4b68f8cde2afc4#rd' + "&title=云小智邀请你加入群聊"),
-      }, 
+      },
       {
         icon: 'bad',
         color: 'red',
@@ -258,10 +282,18 @@ Page({
         icon: 'tongxiang',
         needLogin: false,
         url: '/pages/tools/city/city'
-      },   
-    ],
-    huzhu:[
+      },
       {
+        icon: 'bad',
+        color: 'red',
+        badge: '',
+        name: '找群聊',
+        icon: 'qunliao',
+        needLogin: false,
+        url: '../article/article?src=' + encodeURIComponent('http://mp.weixin.qq.com/s?__biz=MzI1NTUwNDIzNQ==&mid=100002002&idx=1&sn=79069994b1793c33e8ce49431c1d0bd6&chksm=6a35b2d65d423bc097f66072ce82aa4aecc9a1b12da127418eb273f43ce16b4b68f8cde2afc4#rd' + "&title=云小智邀请你加入群聊"),
+      },
+    ],
+    huzhu: [{
         color: 'red',
         badge: '',
         name: '云小圈',
@@ -282,8 +314,7 @@ Page({
         url: '/pages/tools/summary/summary',
       },
     ],
-    play:[
-      {
+    play: [{
         icon: 'expressman',
         color: 'mauve',
         badge: 0,
@@ -321,10 +352,11 @@ Page({
       {
         color: 'red',
         badge: '新',
-        name: '出行优惠',
-        icon: 'travel',
+        name: '优惠中心',
+        icon: 'discount',
         needLogin: false,
-        url: '../article/article?src=' + encodeURIComponent('http://mp.weixin.qq.com/s?__biz=MzI1NTUwNDIzNQ==&mid=100003692&idx=1&sn=c21e5155ab32ea4de14ffe0f8904d743&chksm=6a35b5685d423c7e6c527975257db09bda09f2062d1e9fb1c1b8a875c77f3dc6372397a5cb2a#rd'),
+        auditing: true,
+        url: '/pages/tools/discount/discount'
       },
     ]
   },
@@ -336,6 +368,20 @@ Page({
     let auditing = app.getConfig('auditing')
     this.setData({
       auditing: auditing
+    })
+    // 外卖红包动态获取
+    const waimai = app.getConfig('articles.waimai')
+    if (!waimai) {
+      return
+    }
+    const plays = this.data.play
+    for (let i = 0; i < plays.length; i++) {
+      if (plays[i].name == '外卖红包') {
+        plays[i].url = `../article/article?src=${encodeURIComponent(waimai)}`
+      }
+    }
+    this.setData({
+      play: plays
     })
   },
 
@@ -360,9 +406,9 @@ Page({
       app.msg("请先绑定教务系统账号")
       return;
     }
-    if(appid){
+    if (appid) {
       wx.navigateToMiniProgram({
-        appId:appid,
+        appId: appid,
         path: path
       })
       return

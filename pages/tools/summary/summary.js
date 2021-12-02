@@ -1,6 +1,7 @@
 const app = getApp()
 const { openArticle } = require('../../../utils/common')
 const {initSummary,getSummary,getSummaryPoster,addSummaryBlessing,switchSummaryShareStatus} = require('../../api/other')
+const R = require('../../../utils/request')
 Page({
 
   /**
@@ -36,6 +37,21 @@ Page({
       score: 'score/updateScoreV0',
       attendance: 'attendance/update',
       summary: 'user/buildGraduation'
+    },
+    imgs: {
+      loading: 'https://mmbiz.qpic.cn/mmbiz_gif/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6F6wjClva0iclpic1VOApb2O2vOAlH6uhDDEbsCM3YSMtm7mXOr3bX6qg/0?wx_fmt=gif',
+      logo: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6dU2R5rGvR2gefEbVcPR8xJAl2s5LsyvJKZSZoyZuxBNKEfib9L3Y37Q/0?wx_fmt=png',
+      welcome: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6pBzOGb5lz66O7RFRUUjkIib0bxZgQiaDAdl3Cyiauqoe1qkJjXPTHEnWg/0?wx_fmt=png',
+      gotoschool: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6iaH9j83hwHCJrkrqyeIYLwLwv4kVJqnel3fzr7fsqB2XbAGhic5iaqicUg/0?wx_fmt=png',
+      course: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6cQibpD1ibDTuMVqZRcVGibkYkPiacQH0ZDBibHUXuCOISzW4HIJvJFbOCNg/0?wx_fmt=png',
+      exam: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6qQ61xInsYCZZOR4MMuYFqILTUj2Ax7OljXNgkYwO69EHw9Dt4SX22A/0?wx_fmt=png',
+      attendance: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6PmuODFeXFxvzA2xHsiacqGFCfYBQngDD931XC8Nsz0tP4gDibPcO6d6w/0?wx_fmt=png',
+      junxun: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6gF5mDYcVuSHQAsuXibVa0wj8C01doJywVaexELvfYaR3uhapKvmGetw/0?wx_fmt=png',
+      sushe: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6fR4LqdzpHOhOjWITticBRsuQPcrGuN5r3lQOj42ev8ytCJxd5FdvJ8g/0?wx_fmt=png',
+      caochang2: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6giaKHibDSqFf8k6wtpRU4pkjjicyc4TCsCibVB7A84cHtqzPUMBcpcicQUA/0?wx_fmt=png',
+      yiqing: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6ED4B5RlQVTz75hnibRvaPlCMwRO6YPEBytz1DPHHpS09yjCCbicAkicTA/0?wx_fmt=png',
+      yunxiaozhi: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6JfxBcrIqz1v5vOopvTRhk4bNZxRDvUsrzVaKDZZgXh0UiawoEJibTSpw/0?wx_fmt=png',
+      liuyan: 'https://mmbiz.qpic.cn/mmbiz_png/YWKTC18p77IvhTFXslbNAWiaKWDhoQJU6BPPPLbAs7K9MdC8cxKaJTa7oMePrBiciatT8pqExsMY8Jlu4kvLeC5Pg/0?wx_fmt=png'
     }
   },
 
@@ -71,6 +87,20 @@ Page({
       id:id,
       totalnum: totalnum,
       isAuditing: app.getConfig('auditing') == 1 ? true : false
+    })
+    //加载字体
+    wx.showLoading({
+      title: '加载字体中',
+    })
+    wx.loadFontFace({
+      family: 'diy',
+      source: 'url("https://yunxiaozhi-1251388077.cos.ap-guangzhou.myqcloud.com/mini/font/yangrendong.ttf")',
+      complete: function(){
+        wx.hideLoading()
+      },
+      fail: function(){
+        app.msg('加载字体失败')
+      }
     })
   },
 
@@ -122,6 +152,8 @@ Page({
         _this.setData(res.data)
         _this.getPoster()
         return
+      }else{
+        app.msg(res.message)
       }
       _this.setData({
         isGraduation:false
@@ -179,22 +211,22 @@ Page({
       loadingWidth:20
     })
     let updates = _this.data.updates
-    _this.updateData(updates.info).then((res1) => {
+    _this.updateData(updates.info).then(() => {
       _this.setData({
         loadingWidth: 40
       })
-      _this.updateData(updates.score).then((res2) => {
+      _this.updateData(updates.score).then(() => {
         _this.setData({
           loadingWidth: 60
         })
-        _this.updateData(updates.attendance).then((res3) => {
+        _this.updateData(updates.attendance).then(() => {
           _this.setData({
             loadingWidth: 80
           })
-          _this.updateData(updates.summary).then((res4) => {
+          _this.updateData(updates.summary).then((res) => {
             app.msg("生成报告完成")
             _this.setData({
-              summary:res4.data.summary,
+              summary:res.data.summary,
               loadingWidth: 100,
               needBuild:0,
               loadingData:false
@@ -213,7 +245,7 @@ Page({
     })
   },
   updateData:function(url){
-    return app.promiseRequest({
+    return R({
       url: url
     })
   },
@@ -354,6 +386,9 @@ Page({
             scope: 'scope.writePhotosAlbum',
             success() {
               _this.downloadImage()
+            },
+            fail(res){
+              console.log("授权失败：",res)
             }
           })
         } else {
@@ -422,7 +457,11 @@ Page({
     _this.setData({
       submiting:true
     })
-    addSummaryBlessing().then((res) => {
+    addSummaryBlessing({
+      stu_id: _this.data.id,
+      content: _this.data.blessing,
+      name: _this.data.name
+    }).then((res) => {
       _this.setData({
         submiting:false
       })

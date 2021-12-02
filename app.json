@@ -69,7 +69,12 @@
     "pages/terms/terms",
     "pages/discount/discount",
     "pages/tools/score/fail/fail",
-    "pages/news/news"
+    "pages/news/news",
+    "pages/tools/discount/discount",
+    "pages/tools/library/index",
+    "pages/tools/library/search/index",
+    "pages/tools/library/detail/index",
+    "pages/tools/library/top/index"
   ],
   "window": {
     "navigationStyle": "custom",

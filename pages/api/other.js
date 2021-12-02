@@ -298,6 +298,15 @@ function getQuantityDetail(){
   })
 }
 
+// 通过宿舍号查询水电费
+function getQuantityFromDormitory(data) {
+  return R({
+    url: 'dormitory/getDetailFromDormitory',
+    needLogin: false,
+    data
+  })
+}
+
 // 初始化运动排名页面
 function initSport(){
   return R({
@@ -341,6 +350,7 @@ function initSummary(){
 function getSummary(data){
   return R({
     url: 'share/getSummary',
+    needLogin: false,
     data
   })
 }
@@ -377,6 +387,23 @@ function switchSummaryShareStatus(data){
 function getIsHideSoul(){
   return R({
     url: 'user/isHideSoul'
+  })
+}
+
+// 获取优惠列表
+function getDiscountList(data){
+  return R({
+    url: 'discount/getList',
+    data,
+    needLogin: false
+  })
+}
+
+// 获取优惠分类列表
+function getDiscountTypes(){
+  return R({
+    url: 'discount/getTypes',
+    needLogin: false
   })
 }
 
@@ -426,5 +453,8 @@ module.exports = {
   getSummaryPoster,
   addSummaryBlessing,
   switchSummaryShareStatus,
-  getIsHideSoul
+  getIsHideSoul,
+  getDiscountList,
+  getDiscountTypes,
+  getQuantityFromDormitory
 }

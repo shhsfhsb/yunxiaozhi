@@ -10,7 +10,8 @@ function getDomain(){
     if(isTest){
       return 'https://www.yunxiaozhi.cn/test/public/api/'
     }
-    return 'http://danbaixi.cn.utools.club/yxz_v1/public/index.php/api/'
+    // return 'http://localhost/yxz_v1/public/index.php/api/'
+    return 'http://localhost/yunxiaozhi/public/index.php/api/'
   }
   return 'https://www.yunxiaozhi.cn/v1/public/api/'
 }
@@ -38,6 +39,7 @@ function getRedirect(){
 function R(datas){
   datas.data = datas.data == undefined ? {} : datas.data
   let session = ''
+  let login = 1
   if (datas.needLogin == undefined || datas.needLogin == true){
     session = wx.getStorageSync('login_session')
     if(session == ""){
@@ -55,6 +57,8 @@ function R(datas){
         return resolve('请先登录')
       })
     }
+  } else {
+    login = 0
   }
   var url = getUrl(datas.url),
       data = typeof datas.data == undefined ? '': datas.data,
@@ -74,13 +78,14 @@ function R(datas){
       timeout: 20000,
       header: {
         'content-type': contentType,
-        'session-token': session
+        'session-token': session,
+        'login': login
       },
       success:function(res){
         if(res.data.status == 0){
           return resolve(res.data)
         }
-        if(res.data.status == 4003){
+        if(res.data.status == 4001 || res.data.status == 4003){
           //登陆已过期
           wx.showToast({
             icon: 'none',
@@ -95,6 +100,11 @@ function R(datas){
               url: '/pages/login/login?redirect=' + redirect,
             })
           },1000)
+        }else if (res.data.status == 4004){
+          // 密码已修改
+          wx.redirectTo({
+            url: '/pages/bind/bind?rebind=1'
+          })
         }else{
           const err = res.data.message || '服务器开小差了 ╯﹏╰'
           wx.showToast({

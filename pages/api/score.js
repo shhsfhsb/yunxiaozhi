@@ -15,7 +15,7 @@ function getScoreList(redirect){
 // 更新成绩
 function updateScore(data){
   return R({
-    url: 'score/updateScoreV0',
+    url: 'score/updateScoreList',
     data
   })
 }
@@ -64,6 +64,21 @@ function getScoreFailRank(){
   })
 }
 
+// 获取成绩需求请求
+function getScoreDemand(){
+  return R({
+    url: 'score/getScoreDemand'
+  })
+}
+
+// 订阅成绩通知
+function subscribeScore(data) {
+  return R({
+    url: 'score/subscribeMessage',
+    data
+  })
+}
+
 module.exports = {
   getScoreList,
   updateScore,
@@ -72,5 +87,7 @@ module.exports = {
   getAllRank,
   getCourseScoreData,
   getScoreAnalysis,
-  getScoreFailRank
+  getScoreFailRank,
+  getScoreDemand,
+  subscribeScore
 }
