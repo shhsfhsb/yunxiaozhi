@@ -145,7 +145,9 @@ Page({
       icon: 'success'
     })
     setTimeout(()=>{
-      wx.navigateBack({})
+      // 返回刷新课表背景
+      wx.setStorageSync('refresh_course_bg', true)
+      wx.navigateBack()
     },1000)
   },
 
@@ -202,6 +204,10 @@ Page({
       success: function (e) {
         var tempFilePaths = e.tempFilePaths
         let src = tempFilePaths[0]
+        // 不去裁剪了
+        console.log(src)
+        _this.setBg('diy',src)
+        return
         wx.showLoading({
           title: '正在加载...',
           mask: true

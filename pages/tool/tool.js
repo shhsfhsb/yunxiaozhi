@@ -20,14 +20,14 @@ Page({
         name: '绩点排行',
         icon: 'gpa',
         needLogin: true,
-        url: '../tools/rank/rank?from=index',
+        url: '/subPages/score-rank/index?from=index',
       }, {
         color: 'green',
         badge: 0,
         name: '学业分析',
         icon: 'ana',
         needLogin: true,
-        url: '../tools/score/ana/ana?from=index',
+        url: '/subPages/score-ana/index?from=index',
       }, {
         color: 'green',
         badge: 0,
@@ -40,7 +40,7 @@ Page({
         badge: 0,
         name: '挂科率榜',
         icon: 'score_fail',
-        needLogin: true,
+        needLogin: false,
         url: '/pages/tools/score/fail/fail',
       }, {
         color: 'orange',
@@ -213,20 +213,20 @@ Page({
         icon: 'bad',
         color: 'red',
         badge: '',
-        name: '找社团',
+        name: '社团',
         icon: 'club',
         needLogin: false,
         url: '/pages/tools/club/club',
       },
-      // {
-      //   icon: 'bad',
-      //   color: 'red',
-      //   badge: '',
-      //   name: '找同乡',
-      //   icon: 'tongxiang',
-      //   needLogin: false,
-      //   url: '/pages/tools/city/city'
-      // },
+      {
+        icon: 'bad',
+        color: 'red',
+        badge: '',
+        name: '同乡',
+        icon: 'tongxiang',
+        needLogin: false,
+        url: '/pages/tools/city/city'
+      },
       {
         icon: 'bad',
         color: 'red',
@@ -234,16 +234,17 @@ Page({
         name: '找群聊',
         icon: 'qunliao',
         needLogin: false,
+        auditing: true,
         url: '../article/article?src=' + encodeURIComponent('http://mp.weixin.qq.com/s?__biz=MzI1NTUwNDIzNQ==&mid=2247488770&idx=1&sn=f7d7747e97ab377bd5f915c506d7a7e7&chksm=ea35af06dd42261028b0b3554e22111d7f8c312e0d7ed34f1679a2b15c2cb287f62287503cb6#rd' + "&title=云小智邀请你加入群聊"),
       },
       {
         icon: 'bad',
         color: 'red',
-        badge: '新',
+        badge: '',
         name: '图书馆',
         icon: 'library',
         needLogin: false,
-        url: '/pages/tools/library/index',
+        url: '/subPages/library/index',
       },
     ],
     query: [{
@@ -339,7 +340,7 @@ Page({
         name: '舔狗日记',
         icon: 'tiangou',
         needLogin: false,
-        url: '/pages/tools/tiangou/tiangou',
+        url: '/subPages/tiangou/index',
       },
       {
         color: 'red',
@@ -349,15 +350,15 @@ Page({
         needLogin: false,
         url: '../article/article?src=' + encodeURIComponent('http://mp.weixin.qq.com/s?__biz=MzI1NTUwNDIzNQ==&mid=100002861&idx=1&sn=bc55ac93a14feb1025bbe9e93d74d8d5&chksm=6a35b6295d423f3f5ee553af9eed5f63582bf5853db8c8cfa9e17cf9aba27647d745a0c9137c#rd'),
       },
-      {
-        color: 'red',
-        badge: '新',
-        name: '优惠中心',
-        icon: 'discount',
-        needLogin: false,
-        auditing: true,
-        url: '/pages/tools/discount/discount'
-      },
+      // {
+      //   color: 'red',
+      //   badge: '',
+      //   name: '优惠中心',
+      //   icon: 'discount',
+      //   needLogin: false,
+      //   auditing: true,
+      //   url: '/pages/tools/discount/discount'
+      // },
     ]
   },
 

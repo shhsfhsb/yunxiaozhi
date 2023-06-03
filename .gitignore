@@ -1,3 +1,4 @@
+project.private.config.json
 # Windows
 [Dd]esktop.ini
 Thumbs.db
@@ -14,3 +15,4 @@ $RECYCLE.BIN/
 node_modules/
 
 .idea/
+.vscode/

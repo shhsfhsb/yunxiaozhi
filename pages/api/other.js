@@ -90,7 +90,7 @@ function delExam(data){
 // 获取班级列表
 function getClassList(data){
   return R({
-    url:'Classes/getClassList',
+    url:'Classes/getCourseClassList',
     needLogin:false,
     data
   })
@@ -407,6 +407,31 @@ function getDiscountTypes(){
   })
 }
 
+function getSameCityDetail(data) {
+  return R({
+    url: 'city/getDetail',
+    data,
+    needLogin: false
+  })
+}
+
+//初始化空教室查询
+function initEmptyRoom() {
+  return R({
+    url: 'emptyroom/init',
+    needLogin: false
+  })
+}
+
+// 查询空教室v2
+function getEmptyRoomV2(data) {
+  return R({
+    url: 'emptyroom/getEmptyRoomV2',
+    data,
+    needLogin: false
+  })
+}
+
 module.exports = {
   getAttendanceList,
   updateAttendanceList,
@@ -456,5 +481,8 @@ module.exports = {
   getIsHideSoul,
   getDiscountList,
   getDiscountTypes,
-  getQuantityFromDormitory
+  getQuantityFromDormitory,
+  getSameCityDetail,
+  initEmptyRoom,
+  getEmptyRoomV2
 }

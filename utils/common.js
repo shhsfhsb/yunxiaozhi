@@ -16,20 +16,20 @@ function isTabPath(path){
 }
 
 // 登录后跳转
-function loginRedirect(path){
-  if(!path){
-    wx.switchTab({
+function loginRedirect(path, bind = false){
+  if(!path || bind){
+    wx.reLaunch({
       url: '/pages/index/index'
     })
     return
   }
   path = decodeURIComponent(path)
   if(isTabPath(path)){
-    wx.switchTab({
+    wx.reLaunch({
       url: '/' + path,
     })
   }else{
-    wx.redirectTo({
+    wx.reLaunch({
       url: '/' + path,
     })
   }
@@ -45,8 +45,7 @@ async function updateAndGetCourseList(){
       wx.removeStorageSync('tmp_class')
       wx.setStorageSync('course', res.data.course)
       wx.setStorageSync('train', res.data.train_course)
-      // 不记录时间
-      // wx.setStorageSync('course_update_time', dayjs().unix())
+      wx.setStorageSync('refresh_course', true)
       return true
     }else if(res.status == 1005){
       //重新获取一遍
@@ -130,7 +129,7 @@ function backPage(from = ''){
 }
 
 // 判断是否可以更新数据
-const UPDATE_TIME = 60 //时间间隔60s
+const UPDATE_TIME = 300 //时间间隔5min
 const TIME_KEY = {
   score: 'score_update_time', //成绩
   course: 'course_update_time', //课表
@@ -153,7 +152,9 @@ function canUpdate(type){
   const now = dayjs().unix()
   const level = cacheTime + UPDATE_TIME - now
   if(level > 0){
-    return `请在${level}秒后更新`
+    const levelMin = Math.floor(level / 60)
+    const levelSecond = level - levelMin * 60
+    return `请在${levelMin > 0 ? levelMin + '分钟' : ''}${levelSecond}秒后更新`
   }
   return true
 }
@@ -256,7 +257,7 @@ async function getSchoolDay(){
 // 根据学期编号获取年级
 function getGradeFromTerm(schoolDay,term){
   //这里还需要根据学制来考虑是四年还是五年，暂时考虑四年
-  let nums = ['一','二','三','四']
+  let nums = ['一','二','三','四','五']
   let s = (term.toString()).split('-')[0]
   if(s == term){
     s = parseInt(s/10)

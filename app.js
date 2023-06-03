@@ -5,6 +5,9 @@ const {
 const {
   exitSaveData
 } = require('./utils/util')
+import {
+  updateConfig
+} from './utils/service'
 App({
   /** 小程序入口 */
   onLaunch: function () {
@@ -30,26 +33,37 @@ App({
     key: 'ihzoaixnuy4f8835032505e8a45ac102c52d58593e',
     markers_json: "markers.json",
     adTime: 24, //小时出现一次
+    updateStatus: {
+      '-1': '更新失败',
+      '0': '正在更新',
+      '1': '更新成功'
+    }
   },
   updateConfigRequest: function () {
-    let time = parseInt((new Date()).getTime() / 1000)
-    this.promiseRequest({
-      url: 'config/getMiniConfig',
-      needLogin: false,
-      data: {
-        stu_id: wx.getStorageSync('user_id') || ''
-      }
-    }).then((data) => {
-      if (data.status == 0) {
-        wx.setStorageSync('config_update_time', time)
-        wx.setStorageSync('configs', data.data)
+    updateConfig().then(res => {
+      if (res) {
         acceptTerms()
-      } else {
-        console.log('get config error')
       }
-    }).catch((error) => {
-      console.log(error)
     })
+    // todo 删除
+    // let time = parseInt((new Date()).getTime() / 1000)
+    // this.promiseRequest({
+    //   url: 'config/getMiniConfig',
+    //   needLogin: false,
+    //   data: {
+    //     stu_id: wx.getStorageSync('user_id') || ''
+    //   }
+    // }).then((data) => {
+    //   if (data.status == 0) {
+    //     wx.setStorageSync('config_update_time', time)
+    //     wx.setStorageSync('configs', data.data)
+    //     acceptTerms()
+    //   } else {
+    //     console.log('get config error')
+    //   }
+    // }).catch((error) => {
+    //   console.log(error)
+    // })
   },
   //设置存储文件地址
   setFileUrl: function () {
@@ -361,5 +375,27 @@ App({
         })
       }, delay);
     }
+  },
+
+  // 获取跳转登录页面前的路由
+  getRedirect() {
+    const pages = getCurrentPages()
+    const currentPage = pages[pages.length - 1]
+    const url = currentPage.route
+    const options = currentPage.options
+    let params = []
+    for (let k in options) {
+      params.push(`${k}=${options[k]}`)
+    }
+    return encodeURIComponent(url + (params.length > 0 ? '?' + params.join('&') : ''))
+  },
+
+  // 去登录
+  toLogin() {
+    const redirect = this.getRedirect()
+    const url = `/pages/login/login?redirect=${redirect}`
+    wx.navigateTo({
+      url,
+    })
   }
 })
